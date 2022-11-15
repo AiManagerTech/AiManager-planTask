@@ -9,7 +9,7 @@
 
 - Download current app spec from https://cloud.digitalocean.com/apps, in the settings tab you will find App Spec to app.yaml file
 - Add `catchall_document: index.html`
-- Test if works on with routes like. `https://survey.aimanager.online`
+- Test if works on with routes like. `https://monitoring.aimanager.online`
 - if not follow this steps: Using Cloud panel UI: Log in and click on App > Settings >> click on component name > scroll down to Custom page > Edit Custom page and select Catchall > Enter index.html in the page name block > Save
 
 `port: 6576`
@@ -28,3 +28,24 @@ Source: (APP Platform: App reloading leads to 404 site)[https://www.digitalocean
 - Redirection to URL when typeform finishes: `TODO push an example`
 
 # ToDo:
+
+Objetivo JP: ganar experiencia con programación:
+
+- Programación sin experiencia, base de datos. Scrapper. API. 8€/hs
+- Programación con experiencia, frontend. 28/hs
+- No programación. 20/hs
+  - Experiencia en startups, liderazgo de equipos.
+  - limpieza de base de datos.
+  - Tiempos externos a la programación.
+
+Objetivo Aimanager:
+
+- Formar equipo founder. Responsabilidades, acciones preferenciales.
+
+Gastos extras.
+Responsabilidaddes.
+
+Sueldos previos:
+
+- Jul. 92hs x 8€ = 736€
+- Sep. 96hs x 8€ = 768€
