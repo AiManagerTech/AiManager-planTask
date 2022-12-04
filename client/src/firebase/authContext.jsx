@@ -21,7 +21,7 @@ export const useAuth = () => {
 };
 
 export function AuthProvider({ children }) {
-  // user data
+  // User data
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
