@@ -16,7 +16,7 @@ const Header = () => {
   // User data
   const { user } = useAuth();
   console.log('location: ', location.pathname);
-  console.log('user: ', user);
+  // console.log('user: ', user);
 
   // JSX
   return (

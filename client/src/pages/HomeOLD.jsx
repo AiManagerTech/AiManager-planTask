@@ -10,8 +10,7 @@ import { useAuth } from '../firebase/authContext';
 import db from '../firebase/firebaseConfig';
 
 // Components
-import SubsidiaryList from '../components/SubsidiaryList';
-// import GoogleFormIframe from '../components/GoogleFormIframe';
+import GoogleFormIframe from '../components/GoogleFormIframe';
 
 // Main function
 const Home = () => {
@@ -21,16 +20,22 @@ const Home = () => {
   // States
   const [hasLoaded, setHasLoaded] = useState(false);
   const [monitoringData, setMonitoringData] = useState();
-  // States brands
   const [listOfBrandsUnique, setListOfBrandsUnique] = useState();
-  const [showBrands, setShowBrands] = useState(true); // Show list of brands to select (true) or show selected brand (false)
-  const [selectedBrand, setSelectedBrand] = useState();
+  const [showBrands, setShowBrands] = useState(true);
+  const [selectedBrand, setSelectedBrand] = useState('');
 
   // Show selected brand
   function showSelectedBrandUnique(brand) {
     setSelectedBrand(brand);
-    // console.log('showSelectedBrandUnique() setSelectedBrand:' + brand);
-    brand ? setShowBrands(false) : setShowBrands(true);
+    console.log('showSelectedBrandUnique():' + brand);
+    setShowBrands(false);
+    filterSelectedBrands(brand);
+  }
+
+  // Get brands to show
+  function filterSelectedBrands(brand) {
+    console.log('filterSelectedBrands():' + monitoringData[0]);
+    // const brands = monitoringData.filter();
   }
 
   // Get data from database
@@ -43,7 +48,7 @@ const Home = () => {
         var data = [];
         var listOfBrands = [];
         querySnapshot.forEach((monitor) => {
-          // console.log(monitor.id, ' => ', monitor.data());
+          console.log(monitor.id, ' => ', monitor.data());
           data.push(monitor.data());
           listOfBrands.push(monitor.data().brand.name);
         });
@@ -58,12 +63,14 @@ const Home = () => {
   }, []);
 
   console.log('monitoringData', monitoringData);
-  // console.log('listOfBrandsUnique', listOfBrandsUnique);
+  console.log('listOfBrandsUnique', listOfBrandsUnique);
 
   return hasLoaded ? (
     // JSX
     <Fragment>
-      {/* Flow: 1º View List of Brands. (if value==1, don't show) */}
+      {/* Flow */}
+      {/* 1º View List of Brands [if value==1 go to List of sucursales view] */}
+
       <div className="grid grid-cols-1 gap-1 mx-4">
         {/* Show list of brand to select */}
         {showBrands &&
@@ -73,7 +80,9 @@ const Home = () => {
                 <div
                   className="w-full flex flex-col justify-center items-center bg-gray-500 border border-white shadow-lg rounded-t-sm cursor-pointer hover:bg-gray-600 text-2xl text-white"
                   key={key}
-                  onClick={() => showSelectedBrandUnique(brand)}
+                  onClick={() => {
+                    showSelectedBrandUnique(brand);
+                  }}
                 >
                   {brand}
                 </div>
@@ -81,21 +90,14 @@ const Home = () => {
           )}
         {/* Show selected brand */}
         {!showBrands && (
-          <div
-            className="w-full flex flex-col justify-left items-center bg-green-500 border border-white shadow-lg rounded-t-sm cursor-pointer hover:bg-green-600 text-2xl mb-1"
-            onClick={() => showSelectedBrandUnique()}
-          >
+          <div className="w-full flex flex-col justify-left items-center bg-gray-500 border border-white shadow-lg rounded-t-sm cursor-pointer hover:bg-gray-600 text-2xl">
             {selectedBrand}
           </div>
         )}
       </div>
-
-      {/* SubsidiaryList */}
-      {selectedBrand && (
-        <SubsidiaryList data={monitoringData} brand={selectedBrand} />
-      )}
-
+      {/* 2º View List of sucursales [if value==1 go to forms view][with actives forms][Order by location] */}
       {/* 3º View List of forms [if value==1 start form] */}
+
       <div className="flex flex-col items-center justify-center h-full text-white">
         <p>Home Page: {user.displayName || user.email}</p>
         <p>User UID: {user.uid || 'no tiene UID'}</p>
