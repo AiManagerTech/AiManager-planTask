@@ -42,44 +42,44 @@ const SubsidiaryList = ({ data, brand }) => {
   // JSX
   return hasLoaded ? (
     <Fragment>
-      {/* 2º View List of sucursales [if value==1 go to forms view][with actives forms][Order by location] */}
-      <div className="grid grid-cols-1 gap-1 mx-4">
-        {/* Show list of Subsidiary to select */}
-        {showSubsidiaries &&
-          listOfSubsidiariesUnique.map(
-            (subsidiary, key) =>
-              subsidiary && (
-                <div
-                  className="w-full flex flex-col justify-center items-center bg-gray-500 border border-white shadow-lg rounded-t-sm cursor-pointer hover:bg-gray-600 text-2xl text-white"
-                  key={key}
-                  onClick={() => showSelectedSubsidiaryUnique(subsidiary)}
-                >
-                  {subsidiary}
-                </div>
-              )
-          )}
-        {/* Show selected subsidiary */}
-        {!showSubsidiaries && (
-          <div
-            className="w-full flex flex-col justify-left items-center bg-green-500 border border-white shadow-lg rounded-t-sm cursor-pointer hover:bg-green-600 text-2xl"
-            onClick={() => showSelectedSubsidiaryUnique()}
-          >
-            {selectedSubsidiary}
-          </div>
+      {/* View List of sucursales [if value==1 go to forms view][with actives forms][Order by location] */}
+      {/* Show list of Subsidiary to select */}
+      {showSubsidiaries &&
+        listOfSubsidiariesUnique.map(
+          (subsidiary, key) =>
+            subsidiary && (
+              <div
+                className="w-full btn-outlet"
+                key={key}
+                onClick={() => showSelectedSubsidiaryUnique(subsidiary)}
+              >
+                {subsidiary}
+              </div>
+            )
         )}
+      {/* Show selected subsidiary */}
+      {!showSubsidiaries && (
+        <div
+          className="w-full btn-selected"
+          onClick={() => showSelectedSubsidiaryUnique()}
+        >
+          {selectedSubsidiary}
+        </div>
+      )}
 
-        {/* MonitoringList */}
-        {selectedSubsidiary && (
-          <MonitoringList
-            data={data}
-            brand={brand}
-            subsidiary={selectedSubsidiary}
-          />
-        )}
-      </div>
+      {/* Flow 3: Select Monitoring. (if monitoring = 1, don't show) */}
+      {selectedSubsidiary && (
+        <MonitoringList
+          data={data}
+          brand={brand}
+          subsidiary={selectedSubsidiary}
+        />
+      )}
     </Fragment>
   ) : (
-    <p className="text-white">Loading...</p>
+    <Fragment>
+      <p className="text-white">Loading...</p>
+    </Fragment>
   );
 };
 

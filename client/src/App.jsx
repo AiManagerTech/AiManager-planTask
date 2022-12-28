@@ -11,9 +11,6 @@ import SignUp from './pages/SignUp';
 import ResetPassword from './pages/ResetPassword';
 import NotFoundPage from './pages/NotFoundPage';
 
-// Styles
-import './css/customStyles.css';
-
 // Media
 
 function App() {

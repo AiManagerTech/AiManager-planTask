@@ -10,8 +10,7 @@ import { useAuth } from '../firebase/authContext';
 import db from '../firebase/firebaseConfig';
 
 // Components
-import SubsidiaryList from '../components/SubsidiaryList';
-// import GoogleFormIframe from '../components/GoogleFormIframe';
+import BrandList from '../components/BrandList';
 
 // Main function
 const Home = () => {
@@ -23,15 +22,6 @@ const Home = () => {
   const [monitoringData, setMonitoringData] = useState();
   // States brands
   const [listOfBrandsUnique, setListOfBrandsUnique] = useState();
-  const [showBrands, setShowBrands] = useState(true); // Show list of brands to select (true) or show selected brand (false)
-  const [selectedBrand, setSelectedBrand] = useState();
-
-  // Show selected brand
-  function showSelectedBrandUnique(brand) {
-    setSelectedBrand(brand);
-    // console.log('showSelectedBrandUnique() setSelectedBrand:' + brand);
-    brand ? setShowBrands(false) : setShowBrands(true);
-  }
 
   // Get data from database
   // Todo: filter by user
@@ -57,56 +47,24 @@ const Home = () => {
     }
   }, []);
 
-  console.log('monitoringData', monitoringData);
+  // console.log('monitoringData', monitoringData);
   // console.log('listOfBrandsUnique', listOfBrandsUnique);
 
   return hasLoaded ? (
     // JSX
     <Fragment>
-      {/* Flow: 1º View List of Brands. (if value==1, don't show) */}
-      <div className="grid grid-cols-1 gap-1 mx-4">
-        {/* Show list of brand to select */}
-        {showBrands &&
-          listOfBrandsUnique.map(
-            (brand, key) =>
-              brand && (
-                <div
-                  className="w-full flex flex-col justify-center items-center bg-gray-500 border border-white shadow-lg rounded-t-sm cursor-pointer hover:bg-gray-600 text-2xl text-white"
-                  key={key}
-                  onClick={() => showSelectedBrandUnique(brand)}
-                >
-                  {brand}
-                </div>
-              )
-          )}
-        {/* Show selected brand */}
-        {!showBrands && (
-          <div
-            className="w-full flex flex-col justify-left items-center bg-green-500 border border-white shadow-lg rounded-t-sm cursor-pointer hover:bg-green-600 text-2xl mb-1"
-            onClick={() => showSelectedBrandUnique()}
-          >
-            {selectedBrand}
-          </div>
-        )}
-      </div>
-
-      {/* SubsidiaryList */}
-      {selectedBrand && (
-        <SubsidiaryList data={monitoringData} brand={selectedBrand} />
-      )}
-
-      {/* 3º View List of forms [if value==1 start form] */}
-      <div className="flex flex-col items-center justify-center h-full text-white">
-        <p>Home Page: {user.displayName || user.email}</p>
-        <p>User UID: {user.uid || 'no tiene UID'}</p>
-        {/* {googleFormLink && <p>Google form ID: {googleFormLink}</p>} */}
-        {/* Google Form */}
-        {/* <GoogleFormIframe googleFormLink={googleFormLink} /> */}
+      <div className="mx-4 h-full">
+        {/* Flow 1: Select Brand. (if brand = 1, don't show) */}
+        <BrandList
+          listOfBrandsUnique={listOfBrandsUnique}
+          monitoringData={monitoringData}
+        />
       </div>
     </Fragment>
   ) : (
-    // TODO: Impruve this loading screen
-    <p>loading...</p>
+    <Fragment>
+      <p className="text-white">Loading...</p>
+    </Fragment>
   );
 };
 export default Home;

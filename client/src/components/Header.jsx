@@ -15,7 +15,7 @@ const Header = () => {
 
   // User data
   const { user } = useAuth();
-  console.log('location: ', location.pathname);
+  // console.log('location: ', location.pathname);
   // console.log('user: ', user);
 
   // JSX
@@ -23,27 +23,30 @@ const Header = () => {
     <Fragment>
       <div className="flex flex-row justify-between">
         {/* Left side */}
-        <div className="flex flex-row items-center justify-center w-1/4">
+        <div className="flex flex-row items-center justify-center">
           {{
             // Swich type.
             '/': (
               <Link to="/">
-                <Bars3BottomLeftIcon className="text-white w-full mx-4" />
+                <Bars3BottomLeftIcon className="text-black w-12 sm:w-14 md:w-16 mx-4" />
               </Link>
             ),
             '/user-preferences': (
               <Link to="/">
-                <Bars3BottomLeftIcon className="text-white w-full mx-4" />
+                <Bars3BottomLeftIcon className="text-black w-12 sm:w-14 md:w-16 mx-4" />
               </Link>
             ),
           }[location.pathname] || console.log('No location patch')}
         </div>
         {/* Center */}
         <div className="flex flex-row items-center justify-center w-full">
-          <p className="title text-white">Titile</p>
+          {/* Todo: changue title using global variable */}
+          <p className="title p-0 text-center text-gray-800">
+            Selecciona la auditoría
+          </p>
         </div>
         {/* Right side */}
-        <div className="flex flex-row items-center justify-center m-4">
+        <div className="flex flex-row items-center justify-center w-24 sm:w-28 md:w-30 p-4">
           {/* User */}
           {user.photoURL && (
             <Link to="/user-preferences">
@@ -54,8 +57,6 @@ const Header = () => {
               />
             </Link>
           )}
-          {/* Logout */}
-          {/* <Logout /> */}
         </div>
       </div>
     </Fragment>

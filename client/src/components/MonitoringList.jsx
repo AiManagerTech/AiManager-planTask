@@ -36,8 +36,7 @@ const MonitoringList = ({ data, brand, subsidiary }) => {
     });
     setListOfMonitorings(result);
   }
-
-  console.log('listOfMonitorings: ', listOfMonitorings);
+  // console.log('listOfMonitorings: ', listOfMonitorings);
 
   return hasLoaded ? (
     <Fragment>
@@ -47,7 +46,7 @@ const MonitoringList = ({ data, brand, subsidiary }) => {
           (monitoring, key) =>
             monitoring && (
               <div
-                className="w-full flex flex-col justify-center items-center bg-gray-500 border border-white shadow-lg rounded-t-sm cursor-pointer hover:bg-gray-600 text-2xl text-white"
+                className="w-full btn-outlet"
                 key={key}
                 onClick={() => showSelectedMonitoring(monitoring)}
               >
@@ -57,14 +56,17 @@ const MonitoringList = ({ data, brand, subsidiary }) => {
         )}
       {/* Show Selected Monitoring */}
       {!showMonitoring && (
-        <div className="w-full flex flex-col justify-center items-center bg-green-500 border border-white shadow-lg rounded-t-sm cursor-pointer hover:bg-green-600 text-2xl">
+        <div
+          className="w-full btn-selected"
+          onClick={() => showSelectedMonitoring()}
+        >
           {selectedMonitoring.monitoring.title}
         </div>
       )}
-      {/* Show Google form Iframe */}
+
+      {/* Flow 4: Load Google form Iframe. */}
       {!showMonitoring && (
-        <div>
-          {console.log(selectedMonitoring.monitoring.googleFormLink)}
+        <div className="h-full w-full p-2 border border-gray-300 shadow-lg bg-white rounded-2xl">
           <GoogleFormIframe
             googleFormLink={selectedMonitoring.monitoring.googleFormLink}
           />

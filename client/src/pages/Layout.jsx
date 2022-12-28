@@ -9,12 +9,12 @@ import Header from '../components/Header';
 const Layout = () => {
   return (
     // JSX
-    <div className="overflow-hidden h-screen bg-gradient-to-b from-black to-blue-900">
+    <div className="overflow-hidden h-screen lg:max-w-screen-sm lg:mx-auto  flex flex-col justify-center bg-gradient-to-b from-gray-200 to-white">
       {/*  Site header */}
       <Header />
 
       {/*  Page content */}
-      <main className=" h-full">
+      <main className="h-full">
         <Outlet />
       </main>
     </div>
