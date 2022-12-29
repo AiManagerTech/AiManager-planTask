@@ -1,10 +1,14 @@
 // Dependencies
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../context/GolbalContext';
 
 // Components
 import GoogleFormIframe from '../components/GoogleFormIframe';
 
 const MonitoringList = ({ data, brand, subsidiary }) => {
+  // Context
+  const { editTitle } = useContext(GlobalContext);
+
   const [hasLoaded, setHasLoaded] = useState();
   const [showMonitoring, setShowMonitoring] = useState(true); // Show list of monitoring to select (true) or show selected monitoring (false)
   const [listOfMonitorings, setListOfMonitorings] = useState();
@@ -21,6 +25,10 @@ const MonitoringList = ({ data, brand, subsidiary }) => {
     // console.log('monitoring: ', monitoring);
     setSelectedMonitoring(monitoring);
     monitoring ? setShowMonitoring(false) : setShowMonitoring(true);
+    // Edit Title
+    monitoring
+      ? editTitle(monitoring.monitoring.title)
+      : editTitle('Sucursales');
   }
 
   // Filter data by brand and subsidiary
@@ -66,7 +74,7 @@ const MonitoringList = ({ data, brand, subsidiary }) => {
 
       {/* Flow 4: Load Google form Iframe. */}
       {!showMonitoring && (
-        <div className="h-full w-full p-2 border border-gray-300 shadow-lg bg-white rounded-2xl">
+        <div className="h-full min-h-full w-full p-2 border border-gray-300 shadow-lg bg-white rounded-2xl">
           <GoogleFormIframe
             googleFormLink={selectedMonitoring.monitoring.googleFormLink}
           />

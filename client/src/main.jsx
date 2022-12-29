@@ -7,9 +7,6 @@ import { ContextProvider } from './context/GolbalContext';
 // Authentification
 import { AuthProvider } from './firebase/authContext';
 
-// Contexts
-// import MainVariablesState from './context/MainVariablesState';
-
 // Components
 import Home from './pages/Home';
 import Layout from './pages/Layout';
@@ -21,14 +18,11 @@ import NotFoundPage from './pages/NotFoundPage';
 // Styles
 import './index.css';
 
-// console.log(ContextProvider());
-
 // Root container and routes
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
   <React.StrictMode>
-    {/* <MainVariablesState> */}
     <BrowserRouter>
       <AuthProvider>
         <ContextProvider>
@@ -51,6 +45,5 @@ root.render(
         </ContextProvider>
       </AuthProvider>
     </BrowserRouter>
-    {/* </MainVariablesState> */}
   </React.StrictMode>
 );

@@ -25,7 +25,7 @@ const BrandList = ({ listOfBrandsUnique, monitoringData }) => {
 
   return (
     <Fragment>
-      <div className="grid content-start grid-cols-1 gap-1 pb-1 h-full">
+      <div className="flex flex-col content-start grid-cols-1 gap-1 pb-1 h-full">
         {/* Flow 2: Show list of brand to select */}
         {showBrands &&
           listOfBrandsUnique.map(

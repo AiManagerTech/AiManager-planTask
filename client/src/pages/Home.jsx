@@ -1,7 +1,6 @@
 // Dependencies
 import React, { Fragment, useState, useEffect } from 'react';
 import { getDocs, collection, query, where } from 'firebase/firestore';
-import { Link } from 'react-router-dom';
 
 // Authentification on Firebase
 import { useAuth } from '../firebase/authContext';
