@@ -1,11 +1,15 @@
 // Dependencies
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../context/GolbalContext';
 
 // Components
 import MonitoringList from './MonitoringList';
 
 // Main function
 const SubsidiaryList = ({ data, brand }) => {
+  // Context
+  const { editTitle } = useContext(GlobalContext);
+
   // States monitorings
   const [hasLoaded, setHasLoaded] = useState();
   const [showSubsidiaries, setShowSubsidiaries] = useState(true); // Show list of brands to select (true) or show selected brand (false)
@@ -23,6 +27,8 @@ const SubsidiaryList = ({ data, brand }) => {
     setSelectedSubsidiary(subsidiary);
     // console.log('setSelectedsubsidiary:' + subsidiary);
     subsidiary ? setShowSubsidiaries(false) : setShowSubsidiaries(true);
+    // Edit Title
+    subsidiary ? editTitle('Auditorías') : editTitle('Sucursales');
   }
 
   // Filter data by brand

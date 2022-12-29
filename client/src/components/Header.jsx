@@ -1,17 +1,25 @@
 // Dependences
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useContext } from 'react';
 import { useLocation, NavLink, Link } from 'react-router-dom';
+import { GlobalContext } from '../context/GolbalContext';
+import { MdTouchApp } from 'react-icons/md';
 import { Bars3BottomLeftIcon } from '@heroicons/react/24/solid';
 
 // Authentification on Firebase
 import { useAuth } from '../firebase/authContext';
 
-// Components
-
 // Main function
 const Header = () => {
   // Location
   const location = useLocation();
+
+  // Context
+  const { title, iconTitle } = useContext(GlobalContext);
+  console.log('Context title: ', title);
+
+  // useEffect(() => {
+  //   getTitle();
+  // }, []);
 
   // User data
   const { user } = useAuth();
@@ -41,8 +49,8 @@ const Header = () => {
         {/* Center */}
         <div className="flex flex-row items-center justify-center w-full">
           {/* Todo: changue title using global variable */}
-          <p className="title p-0 text-center text-gray-800">
-            Selecciona la auditoría
+          <p className="title flex p-0 text-center text-gray-800">
+            <MdTouchApp /> {title}
           </p>
         </div>
         {/* Right side */}

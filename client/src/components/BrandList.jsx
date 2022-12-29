@@ -1,11 +1,15 @@
 // Dependencies
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
+import { GlobalContext } from '../context/GolbalContext';
 
 // Components
 import SubsidiaryList from '../components/SubsidiaryList';
 
 // Main function
 const BrandList = ({ listOfBrandsUnique, monitoringData }) => {
+  // Context
+  const { editTitle } = useContext(GlobalContext);
+
   // States
   const [showBrands, setShowBrands] = useState(true); // Show list of brands to select (true) or show selected brand (false)
   const [selectedBrand, setSelectedBrand] = useState();
@@ -15,6 +19,8 @@ const BrandList = ({ listOfBrandsUnique, monitoringData }) => {
     setSelectedBrand(brand);
     // console.log('showSelectedBrandUnique():' + brand);
     brand ? setShowBrands(false) : setShowBrands(true);
+    // Edit Title
+    brand ? editTitle('Sucursales') : editTitle('Marcas');
   }
 
   return (
