@@ -106,7 +106,7 @@ const LogIn = () => {
                         id="email"
                         name="email"
                         type="email"
-                        className="form-input w-full inputInline"
+                        className="form-input w-full inputInline px-4 py-2"
                         placeholder="Ingrese su email"
                         onChange={handleChange}
                         required
@@ -119,11 +119,11 @@ const LogIn = () => {
                       <div className="flex justify-between">
                         <label className="label" htmlFor="password">
                           Contraseña
-                        </label>
+                        </label>{' '}
                         <a
                           href="#!"
                           onClick={handleResetPassword}
-                          className="text-sm font-medium text-orange-600 hover:underline cursor-pointer"
+                          className="text-sm font-medium text-orange-600 hover:underline cursor-pointer pl-2"
                         >
                           ¿Tiene problemas para iniciar sesión?
                         </a>
@@ -132,7 +132,7 @@ const LogIn = () => {
                         id="password"
                         name="password"
                         type="password"
-                        className="form-input w-full inputInline"
+                        className="form-input w-full inputInline px-4 py-2"
                         placeholder="Ingresa tu contraseña"
                         onChange={handleChange}
                         required
