@@ -17,8 +17,8 @@ const Logout = () => {
   return (
     <Fragment>
       <button onClick={handleLogout}>
-        <div className="flex justify-end p-4 border-t border-b border-white text-white hover:bg-gray-800">
-          <p className="">Desloguearme</p>
+        <div className="flex justify-end p-4 border-t border-b border-black hover:bg-gray-300">
+          <p className="text-black text-xl">Desloguearme</p>
         </div>
       </button>
     </Fragment>

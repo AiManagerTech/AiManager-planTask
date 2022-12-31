@@ -9,8 +9,8 @@ const UserPreferences = () => {
   return (
     <Fragment>
       <div className="flex flex-col justify-end m-4">
-        <div className="flex justify-end p-4 border-t border-b border-white">
-          <p className="text-white">Otro</p>
+        <div className="flex justify-end p-4 border-t border-black hover:bg-gray-300">
+          <p className="text-black text-xl">Otro</p>
         </div>
         <Logout />
       </div>
