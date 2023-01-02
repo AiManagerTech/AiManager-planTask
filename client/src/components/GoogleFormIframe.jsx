@@ -13,7 +13,7 @@ const GoogleFormIframe = ({ googleFormLink }) => {
         frameborder="0"
         marginheight="0"
         marginwidth="0"
-        src={`https://docs.google.com/forms/d/${googleFormLink}/viewform?embedded=true`}
+        src={`https://docs.google.com/forms/d/e/${googleFormLink}/viewform?embedded=true`}
       >
         Cargando formulario…
       </iframe>
