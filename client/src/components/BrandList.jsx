@@ -5,7 +5,7 @@ import { GlobalContext } from '../context/GolbalContext';
 // Components
 import SubsidiaryList from '../components/SubsidiaryList';
 
-// Main function
+// Main function :)
 const BrandList = ({ listOfBrandsUnique, monitoringData }) => {
   // Context
   const { editTitle } = useContext(GlobalContext);
